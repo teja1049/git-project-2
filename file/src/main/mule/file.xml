@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f1659735-e7a5-42b8-85e8-1523c9393a7d" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<flow name="fileFlow" doc:id="022dd417-8977-4157-b755-811c99583da3" >
+		<http:listener doc:name="Listener" doc:id="b405efe9-2920-4fc1-9af2-534625632db0" config-ref="HTTP_Listener_config" path="/file"/>
+		<set-variable value='#["files added sucessfully"]' doc:name="Set Variable" doc:id="07559cc5-bcdc-4c7b-9bdc-14da6305a863" variableName="set variable"/>
+		<logger level="INFO" doc:name="Logger" doc:id="d3f46401-cb57-4bce-b534-9d6a58c0df42" message="#[payload]"/>
+	</flow>
+</mule>
